@@ -1,6 +1,6 @@
 # Zillow Data Analytics using AWS
 
-![zillow](https://github.com/bhavanachitragar/zillow-data-analytics/assets/91766461/5df89f71-65d6-4345-842a-43dad0aeaa90)
+![Architecture drawio (1)](https://github.com/bhavanachitragar/zillow-data-analytics/assets/91766461/d36ab26a-5f22-4866-8e1b-ddea2ed2bd98)
 
 ## This architecture leverages:
 Airflow: For scheduling and orchestration of the data pipeline tasks.
