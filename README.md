@@ -2,6 +2,15 @@
 
 ![zillow](https://github.com/bhavanachitragar/zillow-data-analytics/assets/91766461/5df89f71-65d6-4345-842a-43dad0aeaa90)
 
+## This architecture leverages:
+Airflow: For scheduling and orchestration of the data pipeline tasks.
+EC2: For running the Python scripts for data extraction and transformation.
+Lambda Functions: For serverless, triggered processing of data transfer between S3 buckets.
+S3: For storing data at various stages of the pipeline.
+Redshift: For efficient data warehousing and analytics.
+QuickSight: For data visualization and exploration.
+
+## Steps included:
 1. Python Script: Extracts data from Zillow in JSON format and stores it in an S3 bucket.
 2. S3 Bucket (Staging): Stores the initial extracted JSON data.
 3. AWS Lambda Function 1 (Data Transfer): Triggers upon new data in the staging S3 bucket and copies the JSON data to a destination S3 bucket.
