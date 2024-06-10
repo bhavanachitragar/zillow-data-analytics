@@ -20,4 +20,6 @@
 7. Amazon Redshift: Stores the CSV data from the transformed data S3 bucket for efficient data warehousing and analytics.
 8. Amazon QuickSight: Connects to the Redshift data warehouse to visualize and analyze the Zillow data.
 
-
+## Redshift
+### Transformed data is loaded into Amazon Redshift
+![Screenshot 2024-06-10 105008](https://github.com/bhavanachitragar/zillow-data-analytics/assets/91766461/4c4cd696-5982-4b7c-9c9a-bb5552eb87eb)
