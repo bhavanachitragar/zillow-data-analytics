@@ -55,19 +55,19 @@ with DAG('zillow_analytics_dag',
         catchup=False) as dag:
 
         extract_zillow_data_var = PythonOperator(
-        task_id= 'task_extract_zillow_data',
+        task_id= 'tsk_extract_zillow_data',
         python_callable=extract_zillow_data,
         op_kwargs={'url': 'https://zillow56.p.rapidapi.com/search', 'querystring': {"location":"houston, tx"}, 'headers': api_host_key, 'date_string':dt_now_string}
         )
 
         load_to_s3 = BashOperator(
-            task_id = 'task_load_to_s3',
-            bash_command = 'aws s3 mv {{ ti.xcom_pull("task_extract_zillow_data")[0]}} s3://zillow_raw_data/',
+            task_id = 'tsk_load_to_s3',
+            bash_command = 'aws s3 mv {{ ti.xcom_pull("tsk_extract_zillow_data")[0]}} s3://zillow_raw_data/',
         )
 
         is_file_in_s3_available = S3KeySensor(
         task_id='tsk_is_file_in_s3_available',
-        bucket_key='{{ti.xcom_pull("task_extract_zillow_data")[1]}}',
+        bucket_key='{{ti.xcom_pull("tsk_extract_zillow_data")[1]}}',
         bucket_name=s3_bucket,
         aws_conn_id='aws_s3_conn',
         wildcard_match=False,  # Set this to True if you want to use wildcards in the prefix
@@ -80,7 +80,7 @@ with DAG('zillow_analytics_dag',
         aws_conn_id='aws_s3_conn',
         redshift_conn_id='conn_id_redshift',
         s3_bucket=s3_bucket,
-        s3_key='{{ti.xcom_pull("task_extract_zillow_data")[1]}}',
+        s3_key='{{ti.xcom_pull("tsk_extract_zillow_data")[1]}}',
         schema="PUBLIC",
         table="zillowdata",
         copy_options=["csv IGNOREHEADER 1"],
